@@ -1,0 +1,20 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Lottery - Registration</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <h3>Lottery registration</h3>
+  
+    <div *ngIf="step == 1">
+        <button ion-button secondary (click)="generateCode($event)">Generate referred code</button>
+    </div>
+    
+    <div *ngIf="step == 2">
+        <p>Code generated! Share it!</p>
+    </div>
+  </ion-content>

@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Lottery - Test</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <h3>Lottery TEST</h3>
+  
+    <button ion-button secondary (click)="readOpenData($event)">Read Open Data</button>
+    <button ion-button secondary (click)="ReadOpenEntityData($event)">Read OpenEntity Data</button>
+    <button ion-button secondary (click)="ReadOpenListEntityData($event)">Read OpenListEntity Data</button>
+
+
+    <button ion-button secondary (click)="readData($event)">Read Protected Data</button>
+    <button ion-button secondary (click)="getCurrentUser($event)">Get current user</button>
+    <button ion-button secondary (click)="loginUser($event)">{{userToken? 'LOGED' : 'LOGIN'}}</button>
+    
+    <button ion-button secondary (click)="localNotificationTest($event)">Local notification</button>
+    
+
+    <div *ngIf="showData">
+        {{showData}}
+    </div>
+  </ion-content>
