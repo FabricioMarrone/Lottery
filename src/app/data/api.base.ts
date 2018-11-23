@@ -86,7 +86,6 @@ export abstract class ApiBase {
         if(response && response.text()){
             let responseJson = response.json();
             return <T>responseJson;
-            
         }
         return null;
     }
@@ -103,57 +102,68 @@ export abstract class ApiBase {
         if(response && response.text()){
             let responseJson = response.json();
             return new ApiDataResult<T>(responseJson, model);
-            
         }
         return new ApiDataResult<T>();
     }
 
     protected ManageApiError(response: Response) : Observable<ApiBaseResult>{
         let result = new ApiBaseResult();
-        if(response && response.status){
-            result.result = false;
-            result.criticalError = true;
-            result.message = `${response.status} - ${response.statusText}`;
+        result.result = false;
+        result.criticalError = true;
 
-            let alert = this._alertCtrl.create({
-                title: 'Error',
-                subTitle: `${response.status} - ${response.statusText}`,
-                buttons: ['Ok']
-              });
-            alert.present();
+        if(response && response.status){
+            result.message = `${response.status} - ${response.statusText}`;
+        }else{
+            result.message = "Critical error";
         }
+
+        let alert = this._alertCtrl.create({
+            title: 'Error',
+            subTitle: result.message,
+            buttons: ['Ok']
+          });
+        alert.present();
 
         return ApiBase.CreateObservable<ApiBaseResult>(result); 
     }
 
     protected ManageJsonError<T>(response: Response) : Observable<T>{
 
+        let message: string = "";
+
         if(response && response.status){
-            let alert = this._alertCtrl.create({
-                title: 'Error',
-                subTitle: `${response.status} - ${response.statusText}`,
-                buttons: ['Ok']
-              });
-            alert.present();
+            message = `${response.status} - ${response.statusText}`;
+        }else{
+            message = "Critical error";
         }
+
+        let alert = this._alertCtrl.create({
+            title: 'Error',
+            subTitle: message,
+            buttons: ['Ok']
+          });
+        alert.present();
 
         return ApiBase.CreateObservable<T>(null); 
     }
 
     protected ManageApiDataError<T>(response: Response) : Observable<ApiDataResult<T>>{
         let result = new ApiDataResult<T>();
-        if(response && response.status){
-            result.result = false;
-            result.criticalError = true;
-            result.message = `${response.status} - ${response.statusText}`;
+        result.result = false;
+        result.criticalError = true;
 
-            let alert = this._alertCtrl.create({
-                title: 'Error',
-                subTitle: `${response.status} - ${response.statusText}`,
-                buttons: ['Ok']
-              });
-            alert.present();
+        if(response && response.status){
+            result.message = `${response.status} - ${response.statusText}`;
+        }else{
+            result.message = "Critical error";
         }
+
+        let alert = this._alertCtrl.create({
+            title: 'Error',
+            subTitle: result.message,
+            buttons: ['Ok']
+          });
+        alert.present();
 
         return ApiBase.CreateObservable<ApiDataResult<T>>(result); 
     }
