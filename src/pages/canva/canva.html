@@ -11,7 +11,9 @@
     <h3>Lottery CANVA TEST</h3>
   
     <div class="ion-canvas">
-        <canvas #canvas></canvas>
+        <canvas #canvas (mousedown)="handleClick($event)" (mousemove)="mouseMove($event)"></canvas>
     </div>
     
+    <p>Current at: {{currentX}} / {{currentY}}</p>
+    <p>Click at: {{lastX}} / {{lastY}}</p>
   </ion-content>

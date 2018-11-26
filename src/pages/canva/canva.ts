@@ -18,6 +18,11 @@ export class CanvaComp {
     private _CONTEXT : any;
     
     private posX: number;
+    lastX: number;
+    lastY: number;
+
+    currentX: number;
+    currentY: number;
 
     constructor(private _apiTest: ApiTest, 
         private _apiSecurity: ApiSecurity,
@@ -66,18 +71,36 @@ export class CanvaComp {
         this._CONTEXT.beginPath();
 
         // x, y, radius, startAngle, endAngle
-        this._CONTEXT.arc(this._CANVAS.width/2 + this.posX, this._CANVAS.height/2, 80, 0, 2 * Math.PI);
+        //this._CONTEXT.arc(this._CANVAS.width/2 + this.posX, this._CANVAS.height/2, 80, 0, 2 * Math.PI);
+        this._CONTEXT.arc(this.lastX, this.lastY, 80, 0, 2 * Math.PI);
         this._CONTEXT.lineWidth = 1;
         this._CONTEXT.strokeStyle = '#ffffff';
         this._CONTEXT.stroke();
     }
 
+    handleClick(ev){
+ 
+        //this.lastX = ev.touches[0].pageX;
+        //this.lastY = ev.touches[0].pageY;
+        
+        //Layer gets the coords relatives to the canvas element
+        this.lastX = ev.layerX;
+        this.lastY = ev.layerY;
+
+        this.drawCircle();
+    }
+
+    mouseMove(ev){
+        this.currentX = ev.layerX;
+        this.currentY = ev.layerY;
+    }
+
     requestLoop(){
 
-        this.posX += 1;
-        if(this.posX > 400) this.posX = 0;
+        // this.posX += 1;
+        // if(this.posX > 400) this.posX = 0;
         
-        this.drawCircle();
+        // this.drawCircle();
 
         requestAnimationFrame(() => { this.requestLoop(); });
     }
