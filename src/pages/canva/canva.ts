@@ -35,8 +35,11 @@ export class CanvaComp {
     ionViewDidLoad()
     {
         this._CANVAS 	    = this.canvasEl.nativeElement;
-        this._CANVAS.width  	= 500;
-        this._CANVAS.height 	= 500;
+        //this._CANVAS.width  	= 500;
+        //this._CANVAS.height 	= 500;
+        this._CANVAS.width = window.innerWidth;
+        this._CANVAS.height = window.innerHeight;
+
         this.posX = 250;
 
         this.initialiseCanvas();
@@ -49,6 +52,7 @@ export class CanvaComp {
         if(this._CANVAS.getContext)
         {
             this.setupCanvas();
+            //this.fullscreen();
         }
     }
 
@@ -56,7 +60,7 @@ export class CanvaComp {
     {
         this._CONTEXT = this._CANVAS.getContext('2d');
         this._CONTEXT.fillStyle = "#3e3e3e";
-        this._CONTEXT.fillRect(0, 0, 500, 500);
+        this._CONTEXT.fillRect(0, 0, this._CANVAS.width, this._CANVAS.height);
     }
 
     clearCanvas()
@@ -93,6 +97,15 @@ export class CanvaComp {
     mouseMove(ev){
         this.currentX = ev.layerX;
         this.currentY = ev.layerY;
+    }
+
+    fullscreen(){
+        if(this._CANVAS.webkitRequestFullScreen) {
+            this._CANVAS.webkitRequestFullScreen();
+        }
+        else {
+            this._CANVAS.mozRequestFullScreen();
+        }          
     }
 
     requestLoop(){
