@@ -13,7 +13,6 @@ import { TestComp } from '../pages/test/test';
 import { DataApiModule } from './data/api.module';
 import { HttpModule } from '@angular/http';
 import { LocalNotifications } from '@ionic-native/local-notifications';
-import { CanvaComp } from '../pages/canva/canva';
 
 @NgModule({
   declarations: [
@@ -21,8 +20,7 @@ import { CanvaComp } from '../pages/canva/canva';
     HomePage,
     ListPage,
     RegistrationComp,
-    TestComp,
-    CanvaComp
+    TestComp
   ],
   imports: [
     BrowserModule,
@@ -36,8 +34,7 @@ import { CanvaComp } from '../pages/canva/canva';
     HomePage,
     ListPage,
     RegistrationComp,
-    TestComp,
-    CanvaComp
+    TestComp
   ],
   providers: [
     StatusBar,

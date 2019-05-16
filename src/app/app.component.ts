@@ -7,7 +7,6 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { RegistrationComp } from '../pages/registration/registration';
 import { TestComp } from '../pages/test/test';
-import { CanvaComp } from '../pages/canva/canva';
 
 @Component({
   templateUrl: 'app.html'
@@ -27,8 +26,7 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage },
       { title: 'Registration', component: RegistrationComp },
-      { title: 'Test', component: TestComp },
-      { title: 'Canvas', component: CanvaComp }
+      { title: 'Test', component: TestComp }
     ];
 
   }
